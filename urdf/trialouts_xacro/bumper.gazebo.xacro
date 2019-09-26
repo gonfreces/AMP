@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">>
+
+  <xacro:macro name="bumper_gazebo" params="name ros_topic update_rate">
+    <gazebo reference="bumper_link">
+      <selfCollide>false</selfCollide>
+      <sensor type="contact" name="bump_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <update_rate>15.0</update_rate>
+        <visualize>true</visualize>
+        <plugin filename="libgazebo_ros_bumper.so" name="gazebo_ros_bumper">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>15.0</updateRate>
+          <topicName>bumper_state</topicName>
+          <frameName>bump_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+</robot>
